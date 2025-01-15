@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect, get_object_or_404
-from .forms import BookForm
+from .forms import BookForm, AuthorForm
 from .models import Book
 
 # Create your views here.
@@ -18,6 +18,20 @@ def add_book(request):
 
 	return render(request, "book_library/add_book.html", {"book_form" : book_form})
 
-def book_details(request, book_id):
-	book = get_object_or_404(Book, id=book_id)
+
+def add_author(request):
+	if request.method == "GET":
+		author_form = AuthorForm()
+	elif request.method == "POST":
+		author_form = AuthorForm(request.POST)
+		if author_form.is_valid():
+			author_form.save()
+			return redirect("books_list")
+
+	return render(request,"book_library/add_author.html", {"author_form" : author_form})
+
+
+
+def book_details(request, book_title):
+	book = get_object_or_404(Book, title=book_title)
 	return render(request,  "book_library/book_details.html", {"book": book})

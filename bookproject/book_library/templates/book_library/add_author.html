@@ -1,14 +1,14 @@
 {% extends 'book_library/base.html' %}
 
-{% block title %}Ajouter un livre{% endblock %}
+{% block title %}Add Author{% endblock %}
 
 
 {% block content %}
 
-<h1>Ajouter un livre :</h1>
+<h1>Add author :</h1>
 <form method="POST">
 	{% csrf_token %}
-	{{ book_form.as_p }}
+	{{ author_form.as_p }}
 	<button type="submit" class="btn btn-outline-primary">Ajouter</button>
 </form>
 

@@ -1,8 +1,12 @@
+{% extends 'book_library/base.html' %}
+{% block title %}Listes des livres disponibles{% endblock %}
+{% block content %}
 <h1> Coucou les bgs de la DIA3 </h1>
 {% for book in books %}
 	<li>
-		<a href="{% url 'book_details' book.id %}">
+		<a href="{% url 'book_details' book.title %}">
 		{{book.title}} - {{book.author}}
 		</a>
 	</li>
 {% endfor %}
+{% endblock %}
